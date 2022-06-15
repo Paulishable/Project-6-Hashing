@@ -1,5 +1,6 @@
 from time import perf_counter
 import sys
+from ChainingHashTable import *
 
 PERSON_WEIGHT = 200.0
 PYRAMID_DEPTH = 7
@@ -52,7 +53,8 @@ def weight_on_dict(row, column):
         return weight
 
     # case 4 internal person  --- everyone else is calculated here
-    weight = (PERSON_WEIGHT + weight_on_dict(row - 1, column)) / 2 + (PERSON_WEIGHT + weight_on_dict(row - 1, column - 1)) / 2
+    weight = (PERSON_WEIGHT + weight_on_dict(row - 1, column)) / 2 + (
+                PERSON_WEIGHT + weight_on_dict(row - 1, column - 1)) / 2
     dictionary[(row, column)] = weight
     return weight
 
@@ -139,25 +141,40 @@ def print_the_weight_calculations_with_dictionary():
             print(f" %6.2f" % (weight_on_dict(i, j)), end=" ")
 
 
+#
+# # print_the_weight_calculations()
+# start = perf_counter()
+# run_the_weight_calculations()
+# end = perf_counter()
+# print()
+# print("function calls = ", function_calls)
+# print("cache hits = ", cache_hits)
+# print(f"\n Time for Pyramid height of {PYRAMID_DEPTH}      = ", "%.6f" % (end - start), "seconds")
+#
+# start = perf_counter()
+# run_the_weight_calculations_with_dictionary()
+# end = perf_counter()
+# # print_the_weight_calculations_with_dictionary()
+#
+# print()
+# print("with Dictionary - function calls = ", function_calls)
+# print("cache hits = ", cache_hits)
+# print(f"\n with Dictionary - Time for Pyramid height of {PYRAMID_DEPTH}      = ", "%.6f" % (end - start), "seconds")
+#
 # print_the_weight_calculations()
-start = perf_counter()
-run_the_weight_calculations()
-end = perf_counter()
-print()
-print("function calls = ", function_calls)
-print("cache hits = ", cache_hits)
-print(f"\n Time for Pyramid height of {PYRAMID_DEPTH}      = ", "%.6f" % (end - start), "seconds")
-
-start = perf_counter()
-run_the_weight_calculations_with_dictionary()
-end = perf_counter()
 # print_the_weight_calculations_with_dictionary()
 
-print()
-print("with Dictionary - function calls = ", function_calls)
-print("cache hits = ", cache_hits)
-print(f"\n with Dictionary - Time for Pyramid height of {PYRAMID_DEPTH}      = ", "%.6f" % (end - start), "seconds")
 
-print_the_weight_calculations()
-print_the_weight_calculations_with_dictionary()
+my_hasher = ChainingHashTable(20)
+
+my_hasher.insert((1, 0), 100.0)
+my_hasher.insert((2, 1), 300.0)
+# Print each table's buckets again
+print("")
+print(my_hasher)
+print(my_hasher.size())
+print(my_hasher.search((2,1)))
+my_hasher.remove((2, 1))
+print(my_hasher.search((2,1)))
+
 
