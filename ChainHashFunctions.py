@@ -2,6 +2,11 @@ from HashMap import *
 from settings import *
 
 
+def set_chain_pyramid_depth(the_depth):
+    global PYRAMID_DEPTH
+    PYRAMID_DEPTH = the_depth
+
+
 def weight_on(row, column):
     """calculate the weight on each person in the pyramid"""
     global function_calls, chain_hash, cache_hits

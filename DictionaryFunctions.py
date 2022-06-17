@@ -1,6 +1,15 @@
 from settings import *
 
 global dictionary
+
+PYRAMID_DEPTH = 7
+
+
+def set_dictionary_pyramid_depth(the_depth):
+    global PYRAMID_DEPTH
+    PYRAMID_DEPTH = the_depth
+
+
 dictionary = {}
 for i in range(0, PYRAMID_DEPTH):
     for j in range(0, PYRAMID_DEPTH):

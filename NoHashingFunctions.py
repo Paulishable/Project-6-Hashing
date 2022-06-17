@@ -1,6 +1,11 @@
 from settings import *
 
 
+def set_no_hashing_pyramid_depth(the_depth):
+    global PYRAMID_DEPTH
+    PYRAMID_DEPTH = the_depth
+
+
 def weight_on_without(row, column):
     """calculate the weight on each person in the pyramid"""
     global function_calls
@@ -64,6 +69,7 @@ def print_the_weight_calculations():
         print(" ")
         for j in range(0, i + 1):
             print(f" %6.2f" % (weight_on_without(i, j)), end=" ")
+
 
 def test_no_hashing():
     start = perf_counter()
