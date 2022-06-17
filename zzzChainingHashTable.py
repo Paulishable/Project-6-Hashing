@@ -1,4 +1,4 @@
-from hashmap import HashTable
+from HashMap import HashTable
 
 
 class ChainingHashTableItem:
