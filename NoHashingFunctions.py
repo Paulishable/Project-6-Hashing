@@ -1,5 +1,4 @@
 from settings import *
-from time import perf_counter
 
 
 def weight_on_without(row, column):
@@ -65,3 +64,12 @@ def print_the_weight_calculations():
         print(" ")
         for j in range(0, i + 1):
             print(f" %6.2f" % (weight_on_without(i, j)), end=" ")
+
+def test_no_hashing():
+    start = perf_counter()
+    run_the_weight_calculations()
+    end = perf_counter()
+    print_the_weight_calculations()
+    print("with Dictionary - function calls = ", function_calls)
+    print("cache hits = ", cache_hits)
+    print(f"\n with Dictionary - Time for Pyramid height of {PYRAMID_DEPTH}      = ", "%.6f" % (end - start), "seconds")

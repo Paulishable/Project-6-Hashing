@@ -1,4 +1,4 @@
-from pyramid import *
+from settings import *
 
 global dictionary
 dictionary = {}
@@ -52,6 +52,10 @@ def run_the_weight_calculations_with_dictionary():
     function_calls = cache_hits = 0
 
     for i in range(0, PYRAMID_DEPTH):
+        for j in range(0, PYRAMID_DEPTH):
+            dictionary[(i, j)] = -1.0
+
+    for i in range(0, PYRAMID_DEPTH):
         for j in range(0, i + 1):
             if i == 0:
                 pass
@@ -66,6 +70,20 @@ def print_the_weight_calculations_with_dictionary():
     function_calls = cache_hits = 0
 
     for i in range(0, PYRAMID_DEPTH):
+        for j in range(0, PYRAMID_DEPTH):
+            dictionary[(i, j)] = -1.0
+
+    for i in range(0, PYRAMID_DEPTH):
         print(" ")
         for j in range(0, i + 1):
             print(f" %6.2f" % (weight_on_dict(i, j)), end=" ")
+
+
+def test_the_dictionary():
+    start = perf_counter()
+    run_the_weight_calculations_with_dictionary()
+    end = perf_counter()
+    print_the_weight_calculations_with_dictionary()
+    print("with Dictionary - function calls = ", function_calls)
+    print("cache hits = ", cache_hits)
+    print(f"\n with Dictionary - Time for Pyramid height of {PYRAMID_DEPTH}      = ", "%.6f" % (end - start), "seconds")

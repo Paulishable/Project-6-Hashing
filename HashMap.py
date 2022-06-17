@@ -3,6 +3,7 @@
 
 class ChainingHashTableItem:
     """an item in the chaining hashtable -- it is a linked list node"""
+
     def __init__(self, item_key, item_value):
         self.key = item_key
         self.value = item_value
@@ -20,8 +21,9 @@ class ChainingHashTableItem:
         return self.value
 
 
-class HashMap():
+class HashMap:
     """the class for the chaining hash table"""
+
     def __init__(self, initial_capacity=7):
         self.table = [None] * initial_capacity
 
@@ -159,19 +161,12 @@ class HashMap():
     def size(self):
         """Return the number of key-value pairs in the map."""
         the_size = len(self.keys())
-        # counter = 0
-        # for item in self.table:
-        #     if item is not None:
-        #         print("inner loop", item.key)
-        #         counter += 1
-        # return counter
         return the_size
 
     def keys(self):
         """Return a list of keys."""
         list_of_keys = []
 
-        # for i in range(len(self.table)):
         for item in self.table:
             if item is not None:
                 while item is not None:
